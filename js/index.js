@@ -1,141 +1,149 @@
 $(function(){
-    var $menu=$('.menu');
-    var $navbox=$('.nav-box');
-    var $list=$(".list");
-    var ch=document.documentElement.clientHeight;
-    $(window).resize(function(){
+	var $menu=$('.menu');
+	var $navBox=$('.nav-box');
+	var $list=$('.list');
+	var ch=document.documentElement.clientHeight;
+	  $(window).resize(function(){
         var cw=document.documentElement.clientWidth;
         if(cw<768){
             var cw=$menu.attr('id');
         }
     })
-    $menu.click(function(){
-        var ids=$(this).attr('id');
-        if(ids=='active'){
-            $(this).removeAttr('id');
-            $navbox.css({ background:"rgba(0,0,0,0.8)"});
-            $list.css({"height":0,"paddingTop":0,display:"none"})
-        }else{
-            $(this).attr('id','active');
-            $navbox.css({background:"#000"});
-            $list.css({height:(ch-44),paddingTop:"20px",display:"block"})
-            
-        }
-    })
-    var $box=$('.banner');
-    var $imgs=$(".box div");
-    var $lis=$('.anniu li');
-    var $btnR=$(".banner .right");
-    var $btnL=$(".banner .left");
-    //图片宽度
+	$menu.click(function(){
+		var ids=$(this).attr('id');
+		if(ids=='active'){
+			$(this).removeAttr('id');
+			$navBox.css('background','rgba(0,0,0,0.8)');
+			$list.css({'height':0,'paddingTop':0,'display':'none'});
+		}else{
+			$(this).attr('id','active');
+			$navBox.css('background','#000');
+			$list.css({'height':(ch-44),'paddingTop':'20px','display':'block'});
+		}
+	})
+})
+// 轮播图
+$(function(){
+    var $win=$('.banner');
+    var $wheel=$('.bannertp');
+    var $imgs=$('.abanner');
+    var $btnR=$('.btnR');
+    var $btnL=$('.btnL');
+    var $indexBtn=$('.dotnav');
+    var $len=$imgs.length;
     var flag=true;
-    var $widths=$imgs.eq(0).width();
-    $(".box div:not(:first)").css({left:$widths+"px"});
-    $lis.eq(0).addClass("hot");
-
-    //记录下标
-    var index=0;
+    console.log($imgs)
+    $imgs.css('left','100%').eq(0).css('left','0');
+    for(var i=1;i<=$len;i++){
+        // $indexBtn.append('<li></li>');
+        // var str=i;
+        // if(i==1){
+        //     var str='<li class="hot">'+i+'</li>';
+        // }else{
+        //     var str='<li>'+i+'</li>';
+        // }
+        var str=i==1?'<li class="hot"></li>':'<li></li>';
+        $indexBtn.append(str);
+    }
+    
+    var $lis=$('.dotnav>li');
+    var now=0;
     var next=0;
-    //启动轮播
-    var t=setInterval(moveR,1000)
+    var time=2000;
+    var t=setInterval(moveR,time);
     function moveR(){
-        //更新下标
         next++;
-        //判断边界
-        if(next==$imgs.length){
+        if(next==$len){
             next=0;
         }
-        //就位
-    $(window).resize(function(){
-    	var $widths=$imgs.eq(0).width();
-    })
-
-        $lis.eq(index).removeClass("hot");
-        $lis.eq(next).addClass("hot");
-        $imgs.eq(next).css({left:$widths+"px"});
-        $imgs.eq(index).animate({left:-$widths})
-        $imgs.eq(next).animate({left:0},function(){
+        $imgs.eq(next).css('left','100%');
+        $imgs.eq(now).animate({'left':'-100%'});
+        $imgs.eq(next).animate({'left':'0'},function(){
             flag=true;
         });
-        index=next;
-
+        
+        $lis.eq(now).removeClass('hot');
+        $lis.eq(next).addClass('hot');
+        now=next;
     }
-    //box移入和离开
-    $box.mouseover(function(){
-        clearInterval(t)
-    })
-    $box.mouseout(function(){
-        t=setInterval(moveR,1000)
-    })
-    // //选项卡
+
+     function moveL(){
+        next--;
+        if(next<0){
+            next=$imgs.length-1;
+        }
+        $imgs.eq(next).css('left','-100%');
+        $imgs.eq(now).animate({'left':'100%'});
+        $imgs.eq(next).animate({'left':'0'},function(){
+            flag=true;
+        });
+        
+        $lis.eq(now).removeClass('hot');
+        $lis.eq(next).addClass('hot');
+        now=next;
+    }
+
     $lis.click(function(){
-        var indexs=$(this).index();
-        if(indexs==index){
+        if(!flag){return;}
+        flag=false;
+        var i=$(this).index();
+        if(now==i){
             return;
         }
-        // 		//就位
-        $lis.removeClass("hot");
-        $lis.eq(indexs).addClass("hot");
-        // 		//动画
-        if(index>indexs){
-            $imgs.eq(indexs).css({left:$widths+"px"});
-            $imgs.eq(index).animate({left:-$widths})
-            $imgs.eq(indexs).animate({left:0},function(){
-                flag=true;
-            })
+        if(now<i){
+            $imgs.eq(i).css('left','100%');
+            $imgs.eq(now).animate({'left':'-100%'},500);
+            $imgs.eq(i).animate({'left':'0'},500);
+        }else if(now>i){
+            $imgs.eq(i).css('left','-100%');
+            $imgs.eq(now).animate({'left':'100%'},500);
+            $imgs.eq(i).animate({'left':'0'},500);
         }
-
-        if(index<indexs){
-            $imgs.eq(indexs).css({left:-$widths+"px"});
-            $imgs.eq(index).animate({left:$widths})
-            $imgs.eq(indexs).animate({left:0},function(){
-                flag=true;
-            })
-        }
-
-        // 		//更新
-        index=indexs;
-        // 		//保证上面和下面的同步
-        next=index;
+        $imgs.eq(now).animate({left:'100%'},500);
+        $imgs.eq(i).animate({left:'0'},500,function(){
+            flag=true;
+        });
+        $lis.eq(now).removeClass('hot');
+        $lis.eq(i).addClass('hot');
+        next=now=i;
     })
-    // 	}
-    // };
-    // //左右按键
+    $win.mouseover(function(){
+        clearInterval(t);
+    })
+    $win.mouseout(function(){
+        t=setInterval(moveR,time);
+    })
     $btnR.click(function(){
         if(flag){
             flag=false;
-            moveR();
+             moveR();
         }
+       
     })
     $btnL.click(function(){
         if(flag){
             flag=false;
-            moveL();
+             moveL();
         }
+       
     })
-    function moveL(){
-        next--;
-        //判断边界
-        if(next<0){
-            next=$imgs.length-1;
-        }
-        //就位
+})
 
-        $lis.eq(index).removeClass("hot");
-        $lis.eq(next).addClass("hot");
-        $imgs.eq(next).css({left:-$widths+"px"});
-        $imgs.eq(index).animate({left:$widths});
-        $imgs.eq(next).animate({left:0},function(){
-            flag=true;
-        });
-        index=next;
-
-    }
-     $(".menu-title").click(function(){
-        $(window).finish();
-        $(this).children(".menu-con").slideToggle(200);
-        $(".menu-title").css("font-weight","normal");
-        $(this).css("font-weight","bold");
-        $(".menu-con").css("font-weight","normal");
-    })
+/* 小屏链接动画 */
+$(function(){
+	var $cols=$(".link .cols");
+	console.log($cols)
+	var $uls=$(".link ul");
+	var $h3s=$(".link h3");
+	$h3s.click(function(){
+		var idss=$(this).attr("id");
+		var index=$(this).index(".link h3");
+		if(idss=="active"){
+			$(this).removeAttr("id");
+			$uls.eq(index).removeAttr("id");
+		}else{
+			$(this).attr("id","active");
+			$uls.eq(index).attr("id","active");
+		}
+	})
 })

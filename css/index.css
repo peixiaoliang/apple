@@ -1,329 +1,740 @@
-body,ul,li{
-    margin:0;
-    padding:0;
-    list-style: none;
+                                  
+body,ul,li,h1,h2,h3,h4,h5,h6,p,input{
+	margin:0;
+	padding:0;
+	list-style:none;
 }
 body{
-    font-family: "微软雅黑",Arial;
+	font-family:"微软雅黑",'arial';
 }
 a{
-    text-decoration: none;
+	text-decoration:none; 
 }
 img{
-    border:0;
-}
-*{
-    box-sizing:border-box;
+	border:0;
 }
 .nav-box{
-    height:44px;
-    line-height:44px;
-    background:rgba(0,0,0,.8);
-    position: relative;
-    z-index: 200;
+	width:100%;
+	height:44px;
+	line-height: 44px;
+	background:rgba(0,0,0,0.8);
+	position:absolute;
+	z-index:99;  
 }
-
+.nav-box .min-nav{
+	/*display:none;*/
+}
 .nav-box .max-nav{
-    max-width: 1024px;
-    height:100%;
-    margin:0 auto;
-    text-align: justify;
+	max-width:1024px;
+	height:100%;
+	margin:0 auto;
+	text-align:justify;
 }
 .nav-box .max-nav li{
-    display: inline-block;
+	display:inline-block;
 }
 .nav-box .max-nav:after{
-    content: '';
-    display: inline-block;
-    height:0;
-    width:100%;
-    line-height:0;
-    clear: both;
+	content:'';
+	display:inline-block;
+	height:0;
+	width:100%;
+	line-height:0;
+	clear:both;
 }
-.nav-box .max-nav li a{
-    display: inline-block;
-    height:100%;
-    color:#fff;
-    transition: opacity .3s;
+.nav-box .max-nav  li a{
+	display:inline-block;
+	height:100%;
+	color:#fff;
+	transtion:opacity .3s;
 }
-.nav-box .max-nav li a:hover{
-    opacity: .7;
-}
-@media screen and  (min-width:768px){
-    .max-nav{
-        display: block;
-    }
-    .min-nav{
-        display: none;
-    }
-    
-}
-@media screen and  (max-width:768px){
-    .max-nav{
-        display: none;
-    }
-    .min-nav{
-        display: block;
-    }
-
+.nav-box .max-nav  li a:hover{
+	opacity:.7;
 }
 .min-nav{
-    height:100%;
-    text-align: justify;
+	height:100%;
+	text-align:justify;
 }
 .min-nav .nav{
-    height:100%;
-    width: 100%;
+	height:100%;
+	text-align: justify;
 }
 .min-nav .nav>div{
-    display: inline-block;
-    vertical-align: middle;
-    color: #fff;
+	display:inline-block;
+	vertical-align:middle;
+	color:#fff;
+	height:100%;
 }
 .min-nav .nav .menu{
-    height:100%;
-    width:44px;
+	height:100%;
+	width:44px;
 }
-.min-nav .nav:after {
-    content: '';
-    display: inline-block;
-    height: 0;
-    width: 100%;
-    line-height: 0;
-    clear: both;
+.min-nav .nav:after{
+	content:'';
+	display:inline-block;
+	height:0;
+	width:100%;
+	line-height:0;
+	clear:both;
 }
 .min-nav .nav span{
-    display: block;
-    width:80%;
-    border-top:1px solid #fff;
-    margin:14px auto 0;
-    transition: all .3s;
+	display:block;
+	width:60%;
+	border-top:1px solid #fff;
+	margin:14px auto;
+	transition:all .3s;
 }
 .min-nav .nav .menu#active span:nth-child(1){
-    transform: translateY(7px) rotate(135deg);
+	transform:translateY(7px) rotate(135deg);
 }
 .min-nav .nav .menu#active span:nth-child(2){
-    transform: translateY(-7px) rotate(45deg);
+	transform:translateY(-7px) rotate(45deg);
 }
-.nav-box .min-nav .list{
-    display: none;
-    background:#000;
-    margin-left:-15px;
-    /*margin-right:-15px;*/
-    height: 0;
+.min-nav .list{
+	/*width:100%;*/
+	padding-top:20px;
+	background:#000;
+	margin-left:-15px;
+	margin-right:-15px; 
+	transition:height .3s;
+	overflow:hidden;
+	padding-top:0px;
+	display:none;
 }
 .min-nav .list li{
-    margin:0 44px;
-    border-bottom: 1px solid #333;
-    height:48px;
-    line-height:48px;
-    padding-top: 20px;
+	margin:0 44px;
+	border-bottom:1px solid #333;
+	height:48px;
+	line-height:48px;
+
 }
 .min-nav .list li a{
-    color:#fff;
+	color:#fff;
 }
+
+
+/*轮播图开始*/
 .banner{
-    width:100%;
-    min-height:650px;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
+	width:100%;
+	position:relative;
+	font-family: 'HanHei SC', 'PingFang SC', 'Helvetica Neue', 'Helvetica', 'STHeitiSC-Light', 'Arial', sans-serif;
+	/*cursor:pointer;*/
 }
-.banner .box{
-    height:100%;
+.bannertp{
+	width:100%;
+	height:650px;
+	position:relative;
+	overflow: hidden;
+}
+.bannertp .abanner{
+	display:block;
+	width:100%;
+	height:100%;
+	position:absolute; 
+}
+.banner .dotnav{
+	width: 112px;
+	height:8px;
+	position: absolute;
+	bottom:10px;
+	left:50%;
+	margin-left:-61px; 
+}
+.banner .dotnav li{
+	width:8px;
+	height:8px;
+	background:#999999;
+	float:left; 
+	margin:0px 10px;
+	border-radius:50%;
+}
+.banner .btn{
+	width:100%;
+	position: absolute;
+	top:50%;
+	margin-top:-64px;
+	left:0px; 
+	text-align:center; 
+}
+.banner .btn .btnL,.banner .btn .btnR{
+	width:67px;
+	height:128px;
+	color:#ccc;
+	font-size:60px;
+	line-height:128px; 
+	cursor:pointer;
+}
+.banner .btn .btnL{
+	float:left;
+}
+.banner .btn .btnR{
+	float:right; 
+}
+.banner .dotnav li.hot{
+	background:transparent;
+	border:1px solid #017DBB;
+	box-sizing:border-box;
+}
+.banner1{
+	background:url(../images/banner1.jpg) no-repeat  center -60px; 
+}  
+.banner2{  
+	background:url(../images/banner2.jpg) no-repeat  center 330px;
+}  
+.banner3{  
+	background:url(../images/banner3.jpg) no-repeat  center 230px;
+}  
+.banner4{
+	background:url(../images/banner4.jpg) no-repeat; 
+	background-position:50% 39%;
+    background-size:cover;
+}
+.bannertp .text{
+	width:100%;
+	height:130px;
+	position:absolute;
+	text-align:center;
 
 }
-.clf:before, .clf:after {
-    content: "";
-    display: block;
-    clear: both;
-    line-height: 0;
-    font-size: 0;
+.abanner:nth-child(1) .text{
+	bottom:30px;
+	/*z-index:999;*/
+}
+.bannertp .text .bold{
+	font-size:46px;
+	font-weight:400;
+}
+.bannertp .text .ziti{
+	font-size:40px;
+	font-weight:normal;
+	color:#333333;
+}
+.bannertp .text h3{
+	font-size:30px;
+	font-weight:normal; 
+	color:#333;
+}
+.bannertp .text .links{
+	text-align:center;
+}
+.bannertp .text .links span a{
+	color:#08c;
+}
+.bannertp .text .links a:hover{
+	border-bottom:2px solid #08c;
+}
+.abanner:nth-child(2) .text{
+	top:135px;
+	/*z-index:999;*/
+}
+.abanner:nth-child(3) .text{
+	top:110px;
+	/*z-index:999;*/
+}
+.abanner:nth-child(3) .text h2 span{
+	font-size:46px; 
+	/*z-index:999;*/
+}
+.abanner:nth-child(4) .text{
+	top:280px;
+	left:-180px;
+	/*z-index:999;*/
+}
+.bannertp .text .wenzi{
+	color:#fff;
+	font-size:52px; 
+	font-weight:normal;
+}
+.bannertp .text .links .ztyj a{
+	font-size:20px;
+	color:#5cc3f6;
+}
+.abanner .video{
+	font-size:20px; 
 }
 
-.box div{
-    display: block;
-    width:100%;
-    height:100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: auto;
-    right: auto;
-    margin-top:-21px;
-    padding: 0;
+/* 广告开始 */
+.promos{
+	height: auto;
 }
-.box div:nth-child(1){
-    width:100%;
-    background: #fff url(../images/mac.jpg) no-repeat center;
+.promos .row{
+	height: auto;
 }
-.box div:nth-child(2){
-    width:100%;
-    background: #fff url(../images/tim1.jpg) no-repeat center;
+.promos .items{
+	height: 200px;
+	border: 2px solid #fff;
+	box-sizing: border-box;
 }
-.box div:nth-child(3){
-    width:100%;
-    background: #fff url(../images/watch.jpg) no-repeat center;
-}
-.box div:nth-child(4){
-    width:100%;
-    background: #fff url(../images/ios1.jpg) no-repeat center;
-}
-.box img{
-    max-width: 100%;
+/* 广告结束 */
 
+/* 友情链接开始 */
+.link{
+	background: #f2f2f2;
 }
-.anniu{
-    position: absolute;
-    bottom:20px;
-    left:50%;
-    width:120px;
-    margin-left: -60px;
-    height:15px;
-    z-index:100;
+.link .main-link .row{
+	width: 100%;
+	height: 100%;
 }
-.anniu li{
-    float: left;
-     margin-left:15px;
-    width:15px;
-    height:15px;
-    border-radius:50%;
-    background:#ccc;
+/* 友情链接结束 */
+
+
+
+
+
+/* 底部开始 */
+.footer{
+	background: #f2f2f2;
+	overflow: hidden;
 }
-.banner .anniu .hot{
-    background: transparent;
-    box-sizing: border-box;
-    border:1px solid blue;
+.footer ul li{
+	display: inline-block;
+	color: #999;
+	font-size:10px;
 }
-.btn{
-    width:100%;
-    position: absolute;
-    top:50%;
-    left:0;
-    margin-top: -30px;
-    z-index:100;
+.footer ul:nth-child(1) a{
+	color: #08c;
 }
-.btn div{
-    width:30px;
-    height:60px;
-    font-size: 50px;
-    line-height:60px;
-    color: #999;
+.footer ul:nth-child(1) a:hover{
+	text-decoration: underline;
+	color: #333;
 }
-.btn .left{
-    float: left;
+.footer ul:last-child a{
+	color: #999;
 }
-.btn .right{
-    float: right;
+.footer ul:last-child a:hover{
+	text-decoration: underline;
 }
-.promo {
-    width: 100%;
-    height: 200px;
-    float: left;
-    border: 1px solid #fff;
-    box-sizing: border-box;
+
+
+
+/* pc */
+/* 底部开始 */
+.footer .max-footer{
+	max-width: 980px;
+	height: auto;
+	padding:0 22px;
+	margin: 0 auto;
 }
-.promo:nth-child(1) {
-    background: url(../images/apple_tv.jpg) no-repeat center;
+.footer .max-footer ul:nth-child(1){
+	padding-bottom: 6px;
+	margin-bottom: 6px;
+	border-bottom: 1px solid #e3e3e3;
 }
-.promo:nth-child(2) {
-    background: url(../images/iphone.jpg) no-repeat center;
+.footer .max-footer ul:nth-child(2) li:nth-child(1)~li{
+	padding: 0 8px;
+	color: #d6d6d6;
 }
-.promo:nth-child(3) {
-    background: url(../images/watch1.jpg) no-repeat center;
+.footer .max-footer ul:nth-child(2) li:nth-child(1)~li a{
+	color: #666;
 }
-.promo:nth-child(4) {
-    background: url(../images/hp_tiles.jpg) no-repeat center;
+.footer .max-footer ul:nth-child(2) li:nth-child(1)~li:last-child a{
+	color: #666;
+	display: inline-block;
+	height: 16px;
+	vertical-align: middle;
+	background: url("../images/china.png") no-repeat;
+	padding-left: 21px;
 }
-@media screen and (max-width: 768px){
-    .banner{
-        min-height:391px;
+.footer .max-footer ul:nth-child(2) li:nth-child(1)~li a:hover{
+	text-decoration: underline;
+	color: #333;
+}
+.footer .max-footer ul:nth-child(2) li:last-child{
+	float: right;
+	vertical-align: middle;
+}
+/* pc底部结束 */
+
+
+/* 手机 */
+.footer .min-footer{
+	min-width: 440px;
+	height: auto;
+	padding: 20px 0;
+	margin: 0 auto;
+}
+.footer .min-footer ul:nth-child(2){
+	padding: 10px 0;
+}
+.footer .min-footer ul:nth-child(2) li{
+	vertical-align: middle;
+}
+.footer .min-footer ul:nth-child(2) a{
+	color: #666;
+	display: inline-block;
+	height: 16px;
+	vertical-align: middle;
+	background: url("../images/china.png") no-repeat;
+	padding-left: 21px;
+}
+.footer .min-footer ul:nth-child(2) a:hover{
+	text-decoration: underline;
+}
+.footer .min-footer ul:nth-child(4) li{
+	padding: 0 8px;
+	color: #d6d6d6;
+}
+.footer .min-footer ul:nth-child(4) li:nth-child(1){
+	padding-left: 0;
+}
+.footer .min-footer ul:nth-child(4) li a{
+	color: #777;
+}
+.footer .min-footer ul:nth-child(4) li a:hover{
+	text-decoration: underline;
+	color: #333;
+}
+/* 手机底部结束 */
+/* 底部结束 */
+
+
+
+
+@media screen and (max-width:768px){
+	.max-nav{
+		display:none;
+	}
+	.min-nav{
+		display:block;
+	}
+	.banner{
+		width:100%;
+		height:470px; 
+	}
+	.bannertp{
+		width:100%;
+		height:470px; 
+	}
+	.banner1{
+	background:url(../images/banner1.jpg) no-repeat  center 0px; 
+	background-size:640px 308px;
+	} 
+/*	.abanner:nth-child(1) .text{
+    	bottom:30px;
+    	/*z-index:999;
+    }*/
+    .bannertp .text .bold{
+    	font-size:36px;
+    	font-weight:400;
     }
-    .footer1{
-        display: none;
+    .bannertp .text .ziti{
+    	font-size:36px;
+    	font-weight:normal;
+    	color:#333333;
     }
-    .footer {
-    width: 100%;
-    background: #f2f2f2;
-    height: 356px;
-    border: 1px solid #f2f2f2;
-    font-size: 12px;
-    color: #666;
-  }
-  .xiatu{
-    width: 100%;
-    height: 450px!important; 
-  }
-  
+    .bannertp .text h3{
+    	font-size:20px;
+    	font-weight:normal; 
+    	color:#333;
+    } 
+    .banner2{  
+	background:url(../images/banner2.jpg) no-repeat  center 330px;
+	background-size:640px 308px;
+    } 
+    .abanner:nth-child(2) .text{
+	  top:100px;
+	/*z-index:999;*/
+	} 
+	.abanner:nth-child(2) .text h3 span{
+		display:block;
+	}
+	.banner3{  
+	background:url(../images/banner3.jpg) no-repeat  center 100px;
+	background-size:280px 163px; 
+	}  
+	 .abanner:nth-child(3) .text{
+	  top:auto;
+	  bottom:50px;
+	 /*z-index:999;*/
+     }
+     .abanner:nth-child(3) .text h2 span{
+    	font-size:36px;
+    	font-weight:400;
+    }
+    .banner4{
+	   background:url(../images/banner4.jpg) no-repeat; 
+	   background-size:1500px 1000px;
+       background-repeat: no-repeat;
+       background-position:-610px -100px; 
+
+    }
+    .abanner:nth-child(4) .text{
+	top:100px;
+	left:30px;
+	/*z-index:999;*/
+   }
+   .abanner:nth-child(4) .text .wenzi{
+   		font-size:36px;
+   }
+   .abanner:nth-child(4) .text .links .ztyj a{
+   		font-size:18px;
+   }
+
+
+   /* banner结束 */
+
+	/* 广告开始 */
+	.promos .items:nth-child(4){
+		background: url("../images/hp_tiles_ipad_small.jpg") center no-repeat;
+	}
+	.promos .items:nth-child(1){
+		background: url("../images/tradeup_small.jpg") center no-repeat;
+	}
+	.promos .items:nth-child(3){
+		background: url("../images/ipadpro_medium.jpg") center no-repeat;
+		background-size:cover;
+	}
+	.promos .items:nth-child(2){
+		background: url("../images/watch_medium.jpg") center no-repeat;
+		background-size:cover;
+	}
+	/* 广告结束 */
+
+	/* 友情链接开始 */
+	.link{
+		background: #f2f2f2;
+	}
+	.link .main-link .row{
+		margin-left: 0!important;
+	}
+	.link .main-link .row .cols{
+		width: 100%;
+		height: 100%;
+		box-sizing: border-box;
+		margin-right: -30px;
+	}
+	.link .main-link .row h3{
+		width: 100%;
+		font-size: 13px;
+		height: 40px;
+		line-height: 40px;
+		border-bottom: 1px solid #e3e3e3;
+		margin-right: -100px;
+		position: relative;
+		opacity: 0.7;
+
+	}
+	.link .main-link .row h3 a{
+		display: block;
+		width: 100%;
+		height: 100%;
+		color: #111;
+		font-weight: 200;
+	}
+	.link .main-link .row h3:hover{
+		opacity: 0.8;
+	}
+	.link .main-link .row h3:after{
+		content: "+";
+		position: absolute;
+		right: 0;
+		top:0;
+		cursor: pointer;
+		transform: rotate(0deg);
+		transition: transform 0.5s;
+		
+	}
+
+	.link .main-link .row ul{
+		display: none;
+		transition:height 0.6s ease;
+	} 
+	.link .main-link .row ul li{
+		height: 30px;
+		line-height: 30px;
+		font-size: 12px;
+		box-sizing: border-box;
+		padding-left: 20px;
+		opacity: 0.7;
+	}
+	.link .main-link .row ul li a{
+		display: block;
+		width: 100%;
+		height: 100%;
+		color: #111;
+	}
+	.link .main-link .row ul li a:hover{
+		text-decoration: underline;
+		opacity: 0.8;
+	}
+	/* 友情链接结束 */
+
+	/* 底部开始 */
+	.footer .max-footer{
+		display: none;
+	}
+	.footer .min-footer{
+		display: block;
+	}
+	/* 底部结束 */
 }
-@media screen and (min-width:768px) {
-    
-    .footer2 {
-        display: none;
-    }
+@media screen and (max-width: 1024px) and (min-width:768px){
+	.max-nav{
+		display:block;
+	}
+	.min-nav{
+		display:none;
+	}
+	/* banner结束 */
+	/* 广告开始 */
+	.promos .items:nth-child(4){
+		background: url("../images/hp_tiles_ipad_medium.jpg") center no-repeat;
+	}
+	.promos .items:nth-child(1){
+		background: url("../images/tradeup_medium.jpg") center no-repeat;
+	}
+	.promos .items:nth-child(3){
+		background: url("../images/ipadpro_medium.jpg") center no-repeat;
+		background-size:cover; 
+	}
+	.promos .items:nth-child(2){
+		background: url("../images/watch_medium.jpg") center no-repeat;
+		background-size:cover; 
+	}
+	/* 广告结束 */
+
+	/* 友情链接开始 */
+	.link{
+		height: 260px;
+	}
+	.link .main-link{
+		max-width: 1024px;
+		height: 100%;
+		margin: 0 auto;
+		padding: 32px 22px 20px;
+		box-sizing: border-box;
+	}
+	.link .main-link .row{
+		width: 100%;
+		height: 100%;
+		margin: 0!important;
+		line-height: 20px;
+	}
+	.link .main-link .row h3{
+		height: 20px;
+		font-size: 11px;
+		opacity: 0.9;
+	}
+	.link .main-link .row h3 a{
+		color: #111;
+	}
+	.link .main-link .row ul li{
+		height: 20px;
+		font-size: 11px;
+		font-weight: bold;
+	}
+	.link .main-link .row ul li a{
+		color: #111;
+		opacity: 0.6;
+	}
+	.link .main-link .row ul li a:hover{
+		text-decoration: underline;
+		opacity: 0.8;
+	}
+	.link .main-link .row h3:nth-of-type(2){
+		margin-top: 20px;
+	}
+	/* 友情链接结束 */
+
+	/* 底部开始 */
+	.footer .max-footer{
+		display: block;
+	}
+	.footer .min-footer{
+		display: none;
+	}
+	/* 底部结束 */
 
 }
-.menu-title {
-    width: 100%;
-    height: auto;
-    border-bottom: 1px solid #ccc;
-    line-height: 44px;
+
+
+
+
+/* pc */
+@media screen and (min-width: 1024px) {
+	.max-nav{
+		display:block;
+	}
+	.min-nav{
+		display:none;
+	}
+	/* 广告开始 */
+	.promos .items:nth-child(4){
+		background: url("../images/hp_tiles_ipad_large.jpg") center no-repeat;
+	}
+	.promos .items:nth-child(1){
+		background: url("../images/tradeup_large.jpg") center no-repeat;
+	}
+	.promos .items:nth-child(3){
+		background: url("../images/ipadpro_medium.jpg") center no-repeat;
+		background-size:cover; 
+	}
+	.promos .items:nth-child(2){
+		background: url("../images/watch_medium.jpg") center no-repeat;
+		background-size:cover; 
+	}
+	/* 广告结束 */
+
+	/* 友情链接开始 */
+	.link{
+		height: 260px;
+	}
+	.link .main-link{
+		max-width: 1024px;
+		height: 100%;
+		margin: 0 auto;
+		padding: 32px 22px 20px;
+		box-sizing: border-box;
+	}
+	.link .main-link .row{
+		width: 100%;
+		height: 100%;
+		margin: 0!important;
+		line-height: 20px;
+	}
+	.link .main-link .row h3{
+		height: 20px;
+	    margin-right:10px; 
+		opacity: 0.9;
+	}
+	.link .main-link .row h3 a{
+		color: #111;
+		font-weight:200; 
+		font-size:10px; 
+	}
+	.link .main-link .row ul {
+		padding-right:10px;
+	}
+	.link .main-link .row ul li{
+		height: 20px;
+		font-size:8px;
+	}
+	.link .main-link .row ul li a{
+		color: #111;
+		opacity: 0.6;
+	}
+	.link .main-link .row ul li a:hover{
+		text-decoration: underline;
+		opacity: 0.8;
+	}
+	.link .main-link .row h3:nth-of-type(2){
+		margin-top: 20px;
+	}
+	/* 友情链接结束 */
+
+	/* 底部开始 */
+	.footer .max-footer{
+		display: block;
+	}
+	.footer .min-footer{
+		display: none;
+	}
+	/* 底部结束 */	
 }
-.menu-title:before,
-.menu-title:after {
-    content: "";
-    display: block;
+/* 小屏链接动画 */
+.link .main-link .row .cols ul#active{
+
+	display:block;
 }
-.menu-title:after {
-    clear: both;
-}
-.menu-title span {
-    float: right;
-    padding-right: 30px;
-}
-.menu-con {
-    width: 100%;
-    font-size: 1em;
-    background: #f2f2f2;
-    display: none;
-}
-.menu-con:before,
-.menu-con:after {
-    content: "";
-    display: block;
-}
-.menu-con:after {
-    clear: both;
-}
-.menu-con li {
-    margin-left: 30px;
-}
-.content {
-    height: 320px;
-    margin: 20px auto 0;
-    max-width: 1024px;
-    padding: 0 22px;
-}
-.col-xh-4 .footer-title {
-    font-weight: bold;
-}
-.col-xh-4 .footer-con {
-    font-weight: normal;
-    margin-top: 10px;
-}
-.footer {
-    width: 100%;
-    background: #f2f2f2;
-    height: 356px;
-    border: 1px solid #f2f2f2;
-    font-size: 12px;
-    color: #666;
-}
-.fotter{
-    height: 356px;
-    width: 100%;
-}
-.xiatu{
-    width: 100%;
-    height: 200px;
+.link .main-link .row  .cols h3#active:after{
+	transform: rotate(45deg);
 }
